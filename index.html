@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Th-Edu AI - Nền Tảng Giáo Dục & Công Nghệ AI Hàng Đầu</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#2563EB',
+                            dark: '#1D4ED8',
+                            light: '#3B82F6',
+                            subtle: '#EFF6FF'
+                        },
+                        accent: {
+                            DEFAULT: '#F97316',
+                            hover: '#EA580C',
+                            light: '#FFEDD5'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-gradient {
+            background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 50%, #FFF7ED 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            transition: all 0.3s ease;
+        }
+        @keyframes spin-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 2s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-primary selection:text-white">
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-xl bg-primary flex items-center justify-center text-white shadow-md shadow-primary/30 group-hover:bg-primary-dark transition-all">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold tracking-tight text-slate-900">Th-Edu<span class="text-accent">.AI</span></span>
+                        <span class="block text-[10px] uppercase tracking-widest font-semibold text-slate-500">Smart Education</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+                    <a href="#home" class="text-primary font-semibold transition hover:text-primary">Trang chủ</a>
+                    <a href="#features" class="hover:text-primary transition">Sản phẩm & Giải pháp</a>
+                    <a href="#demo" class="hover:text-primary transition">Trải nghiệm AI</a>
+                    <a href="#pricing" class="hover:text-primary transition">Bảng giá</a>
+                    <a href="#testimonials" class="hover:text-primary transition">Đánh giá</a>
+                </nav>
+
+                <!-- Action CTA -->
+                <div class="hidden md:flex items-center gap-4">
+                    <button onclick="copySourceCode()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium px-3.5 py-2 rounded-xl text-xs flex items-center gap-2 transition" title="Sao chép toàn bộ mã nguồn HTML">
+                        <i class="fa-solid fa-code"></i> Copy Mã Nguồn
+                    </button>
+                    <button onclick="openModal('register')" class="bg-primary hover:bg-primary-dark text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-primary/25 transition transform active:scale-95 text-sm">
+                        Dùng thử miễn phí
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="md:hidden text-slate-700 hover:text-primary focus:outline-none p-2" aria-label="Menu">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" class="block py-2 text-primary font-semibold">Trang chủ</a>
+            <a href="#features" class="block py-2 text-slate-600 hover:text-primary">Sản phẩm & Giải pháp</a>
+            <a href="#demo" class="block py-2 text-slate-600 hover:text-primary">Trải nghiệm AI</a>
+            <a href="#pricing" class="block py-2 text-slate-600 hover:text-primary">Bảng giá</a>
+            <a href="#testimonials" class="block py-2 text-slate-600 hover:text-primary">Đánh giá</a>
+            <div class="pt-4 flex flex-col gap-3">
+                <button onclick="copySourceCode()" class="w-full py-2.5 bg-slate-100 rounded-xl font-medium text-slate-700 text-sm">Copy Mã Nguồn</button>
+                <button onclick="openModal('register')" class="w-full py-2.5 bg-primary text-white rounded-xl font-semibold shadow-md shadow-primary/20 text-sm">Dùng thử miễn phí</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-gradient pt-16 pb-24 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 px-4 py-2 rounded-full text-accent font-semibold text-sm">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Nền tảng Giáo dục thông minh tích hợp AI 2026</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                        Tối Ưu Hóa Giảng Dạy & <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Hứng Khởi Học Tập</span> Cùng AI
+                    </h1>
+                    <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0">
+                        Th-Edu AI đồng hành cùng giáo viên soạn giáo án siêu tốc, tạo đề kiểm tra chuẩn ma trận Bộ GD&ĐT, tổ chức trò chơi tương tác và quản lý lớp học thông minh tại Châu Đốc, An Giang và toàn quốc.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="openModal('register')" class="w-full sm:w-auto bg-accent hover:bg-accent-hover text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-accent/30 text-center transition transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-rocket mr-2"></i> Trải Nghiệm Miễn Phí Ngay
+                        </button>
+                        <a href="#demo" class="w-full sm:w-auto bg-white hover:bg-slate-100 text-slate-700 font-semibold px-8 py-4 rounded-xl border border-slate-200 shadow-sm text-center transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-play text-primary"></i> Xem Demo Tương Tác
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-3xl blur-xl opacity-30 animate-pulse"></div>
+                        <div class="relative bg-white rounded-3xl shadow-2xl p-6 border border-slate-100">
+                            <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                </div>
+                                <span class="text-xs font-semibold text-slate-400 bg-slate-100 px-2.5 py-1 rounded-md">Th-Edu AI Workspace</span>
+                            </div>
+                            <div class="py-6 space-y-4">
+                                <div class="bg-primary-subtle p-4 rounded-2xl border border-primary/20">
+                                    <div class="flex items-center gap-3 text-primary font-semibold text-sm mb-1">
+                                        <i class="fa-solid fa-robot"></i> Trợ lý AI đang sẵn sàng...
+                                    </div>
+                                    <p class="text-xs text-slate-600">Chọn tính năng bên dưới để thử nghiệm tốc độ xử lý của hệ thống AI.</p>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-3 bg-slate-100 rounded-full w-full"></div>
+                                    <div class="h-3 bg-slate-100 rounded-full w-5/6"></div>
+                                </div>
+                                <div class="flex items-center justify-between pt-2">
+                                    <span class="text-xs bg-green-100 text-green-700 font-bold px-3 py-1 rounded-full"><i class="fa-solid fa-check mr-1"></i> Hệ thống ổn định</span>
+                                    <a href="#demo" class="text-xs bg-primary text-white font-medium px-3 py-1.5 rounded-lg">Thử ngay</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE PRODUCTS -->
+    <section id="features" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-primary">Hệ Thống Giải Pháp</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">4 Trụ Cột Công Nghệ Cho Trường Học Hiện Đại</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-primary-subtle rounded-2xl flex items-center justify-center text-primary text-2xl mb-6 shadow-sm">
+                            <i class="fa-solid fa-file-pen"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3">Soạn Giáo Án AI Siêu Tốc</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">Tạo kế hoạch bài dạy chuẩn theo công văn mới nhất chỉ trong vài giây.</p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100">
+                        <a href="#demo" onclick="switchTab('lesson')" class="text-primary font-semibold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">
+                            Trải nghiệm <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-accent text-2xl mb-6 shadow-sm">
+                            <i class="fa-solid fa-clipboard-question"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3">Ma Trận & Đề Kiểm Tra</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">Sinh ma trận đề thi và câu hỏi phân hóa theo các mức độ nhận thức.</p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100">
+                        <a href="#demo" onclick="switchTab('exam')" class="text-accent font-semibold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">
+                            Trải nghiệm <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-primary-subtle rounded-2xl flex items-center justify-center text-primary text-2xl mb-6 shadow-sm">
+                            <i class="fa-solid fa-gamepad"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3">Trò Chơi Dạy Học Tương Tác</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">Biến bài giảng thành minigame hấp dẫn, thu hút 100% học sinh tham gia.</p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100">
+                        <a href="#demo" onclick="switchTab('games')" class="text-primary font-semibold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">
+                            Trải nghiệm <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-accent text-2xl mb-6 shadow-sm">
+                            <i class="fa-solid fa-users-rectangle"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3">Quản Lý Lớp Học Thông Minh</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">Điểm danh, theo dõi tiến độ học tập và gửi báo cáo tự động.</p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100">
+                        <a href="#demo" onclick="switchTab('class')" class="text-accent font-semibold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">
+                            Trải nghiệm <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE DEMO SECTION WITH FORMS & AI LOADING -->
+    <section id="demo" class="py-20 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-primary">Trải Nghiệm Thực Tế</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Dùng Thử Các Công Cụ AI Trực Tiếp</h3>
+                <p class="text-slate-600">Điền thông tin và bấm "Tạo" để trải nghiệm tốc độ xử lý mô phỏng AI (mất 2 giây).</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button onclick="switchTab('lesson')" id="btn-lesson" class="px-5 py-3 rounded-xl font-semibold text-sm transition bg-primary text-white shadow-md shadow-primary/20">
+                    <i class="fa-solid fa-file-pen mr-2"></i> 1. Soạn Giáo Án AI
+                </button>
+                <button onclick="switchTab('exam')" id="btn-exam" class="px-5 py-3 rounded-xl font-semibold text-sm transition bg-slate-100 text-slate-700 hover:bg-slate-200">
+                    <i class="fa-solid fa-clipboard-question mr-2"></i> 2. Tạo Đề Kiểm Tra
+                </button>
+                <button onclick="switchTab('games')" id="btn-games" class="px-5 py-3 rounded-xl font-semibold text-sm transition bg-slate-100 text-slate-700 hover:bg-slate-200">
+                    <i class="fa-solid fa-gamepad mr-2"></i> 3. Trò Chơi Dạy Học
+                </button>
+                <button onclick="switchTab('class')" id="btn-class" class="px-5 py-3 rounded-xl font-semibold text-sm transition bg-slate-100 text-slate-700 hover:bg-slate-200">
+                    <i class="fa-solid fa-users-rectangle mr-2"></i> 4. Quản Lý Lớp
+                </button>
+            </div>
+
+            <!-- Tab Content Workspace -->
+            <div class="bg-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden min-h-[460px] flex flex-col justify-center">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- 1. LESSON PLAN TAB -->
+                <div id="tab-lesson" class="tab-content">
+                    <div id="lesson-input-view" class="max-w-2xl mx-auto space-y-6">
+                        <div class="text-center space-y-2">
+                            <h4 class="text-2xl font-bold">Trợ Lý Tạo Kế Hoạch Bài Dạy (Giáo Án)</h4>
+                            <p class="text-xs text-slate-400">Nhập thông tin cơ bản để AI tự động biên soạn giáo án chuẩn.</p>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-400 mb-1">Tên bài học</label>
+                                <input type="text" id="lesson-title" value="Hàm số bậc hai và đồ thị" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-400 mb-1">Môn học</label>
+                                <select id="lesson-subject" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-primary">
+                                    <option>Toán học</option>
+                                    <option>Ngữ văn</option>
+                                    <option>Tiếng Anh</option>
+                                    <option>Vật lý</option>
+                                    <option>Hóa học</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-slate-400 mb-1">Khối lớp</label>
+                            <select id="lesson-grade" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-primary">
+                                <option>Lớp 10</option>
+                                <option>Lớp 11</option>
+                                <option>Lớp 12</option>
+                                <option>Lớp 9</option>
+                            </select>
+                        </div>
+                        <button onclick="generateLesson()" class="w-full bg-accent hover:bg-accent-hover text-white font-bold py-3.5 rounded-xl transition shadow-lg text-sm">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Tạo Giáo Án Ngay
+                        </button>
+                    </div>
+
+                    <!-- Loading view -->
+                    <div id="lesson-loading" class="hidden text-center py-16 space-y-4">
+                        <i class="fa-solid fa-spinner text-4xl text-accent animate-spin-slow"></i>
+                        <p class="text-lg font-bold text-slate-200">AI đang xử lý và soạn thảo giáo án...</p>
+                        <p class="text-xs text-slate-400">Đang đồng bộ chuẩn phương pháp giáo dục phổ thông mới.</p>
+                    </div>
+
+                    <!-- Result view -->
+                    <div id="lesson-result" class="hidden space-y-4">
+                        <div class="flex items-center justify-between pb-3 border-b border-slate-700">
+                            <div>
+                                <span class="text-xs bg-green-500/20 text-green-400 px-2.5 py-1 rounded font-semibold">Đã tạo thành công</span>
+                                <h5 id="res-lesson-name" class="font-bold text-lg mt-1">Giáo án: Hàm số bậc hai và đồ thị (Lớp 10)</h5>
+                            </div>
+                            <button onclick="resetForm('lesson')" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-lg border border-slate-700">Tạo lại</button>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-3 text-xs text-slate-300 font-mono max-h-64 overflow-y-auto">
+                            <p class="text-primary-light font-bold">I. MỤC TIÊU DẠY HỌC:</p>
+                            <p>1. Về kiến thức: Nắm vững định nghĩa hàm số bậc hai y = ax² + bx + c (a ≠ 0), tọa độ đỉnh parabol và trục đối xứng.</p>
+                            <p>2. Về năng lực: Phát triển tư duy logic, kỹ năng vẽ đồ thị và giải quyết bài toán thực tế liên quan.</p>
+                            <p class="text-primary-light font-bold pt-2">II. THIẾT BỊ DẠY HỌC & HỌC LIỆU:</p>
+                            <p>- Máy chiếu, phiếu học tập số 1, bảng phụ, phần mềm Th-Edu AI Game.</p>
+                            <p class="text-primary-light font-bold pt-2">III. TIẾN TRÌNH DẠY HỌC:</p>
+                            <p>• Hoạt động 1: Khởi động (Trò chơi "Ai nhanh hơn" 5 phút tạo hứng thú).</p>
+                            <p>• Hoạt động 2: Hình thành kiến thức mới (Khảo sát sự biến thiên và vẽ parabol).</p>
+                            <p>• Hoạt động 3: Luyện tập & Vận dụng giải bài tập sgk.</p>
+                        </div>
+                        <div class="flex justify-end gap-3">
+                            <button onclick="showNotification('Đã tải xuống file Word (.docx) thành công!')" class="bg-primary hover:bg-primary-dark text-white text-xs font-semibold px-4 py-2.5 rounded-xl"><i class="fa-solid fa-download mr-1"></i> Tải file Word</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. EXAM GENERATOR TAB -->
+                <div id="tab-exam" class="tab-content hidden">
+                    <div id="exam-input-view" class="max-w-2xl mx-auto space-y-6">
+                        <div class="text-center space-y-2">
+                            <h4 class="text-2xl font-bold">Tạo Ma Trận & Đề Kiểm Tra Tự Động</h4>
+                            <p class="text-xs text-slate-400">Chọn thông số để hệ thống sinh đề thi trắc nghiệm chuẩn xác.</p>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-400 mb-1">Môn học</label>
+                                <select id="exam-subject" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-primary">
+                                    <option>Toán học</option>
+                                    <option>Vật lý</option>
+                                    <option>Hóa học</option>
+                                    <option>Tiếng Anh</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-400 mb-1">Thời gian</label>
+                                <select id="exam-time" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-primary">
+                                    <option>15 phút</option>
+                                    <option>45 phút (1 tiết)</option>
+                                    <option>90 phút (Giữa/Cuối kỳ)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-400 mb-1">Mức độ phân hóa</label>
+                                <select id="exam-level" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-primary">
+                                    <option>Nhận biết & Thông hiểu</option>
+                                    <option>Đầy đủ 4 mức độ (NB - TH - VD - VDC)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="generateExam()" class="w-full bg-accent hover:bg-accent-hover text-white font-bold py-3.5 rounded-xl transition shadow-lg text-sm">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Tạo Đề & Ma Trận Ngay
+                        </button>
+                    </div>
+
+                    <!-- Loading view -->
+                    <div id="exam-loading" class="hidden text-center py-16 space-y-4">
+                        <i class="fa-solid fa-spinner text-4xl text-accent animate-spin-slow"></i>
+                        <p class="text-lg font-bold text-slate-200">AI đang lọc ngân hàng câu hỏi và lập ma trận...</p>
+                        <p class="text-xs text-slate-400">Đảm bảo cấu trúc tỷ lệ điểm số theo quy định.</p>
+                    </div>
+
+                    <!-- Result view -->
+                    <div id="exam-result" class="hidden space-y-4">
+                        <div class="flex items-center justify-between pb-3 border-b border-slate-700">
+                            <div>
+                                <span class="text-xs bg-green-500/20 text-green-400 px-2.5 py-1 rounded font-semibold">Đã tạo đề thành công</span>
+                                <h5 class="font-bold text-lg mt-1">Đề Kiểm Tra Trắc Nghiệm + Tự Luận (4 Mã Đề)</h5>
+                            </div>
+                            <button onclick="resetForm('exam')" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-lg border border-slate-700">Tạo lại</button>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-3 text-xs text-slate-300 font-mono max-h-64 overflow-y-auto">
+                            <div class="flex justify-between border-b border-slate-700 pb-2 text-slate-400 font-bold">
+                                <span>Chủ đề / Nội dung</span>
+                                <span>Nhận biết | Thông hiểu | Vận dụng</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>1. Mệnh đề và tập hợp</span>
+                                <span class="text-accent">4 câu | 3 câu | 1 câu</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>2. Bất phương trình bậc nhất hai ẩn</span>
+                                <span class="text-accent">3 câu | 2 câu | 2 câu</span>
+                            </div>
+                            <div class="bg-slate-700/50 p-3 rounded-lg mt-2">
+                                <p class="text-green-400 font-bold">✓ Đã xuất kèm đáp án chi tiết và file xáo trộn mã đề 101, 102, 103, 104.</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-3">
+                            <button onclick="showNotification('Đã tải xuống bộ đề kiểm tra và đáp án thành công!')" class="bg-primary hover:bg-primary-dark text-white text-xs font-semibold px-4 py-2.5 rounded-xl"><i class="fa-solid fa-download mr-1"></i> Tải Đề & Đáp Án</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. GAMES TAB -->
+                <div id="tab-games" class="tab-content hidden space-y-6">
+                    <div class="text-center space-y-2 max-w-xl mx-auto">
+                        <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-xs font-semibold">GAMIFICATION</span>
+                        <h4 class="text-2xl font-bold">Kho Trò Chơi Dạy Học Tương Tác</h4>
+                        <p class="text-xs text-slate-400">Chọn một trò chơi bên dưới để đưa vào bài giảng lớp học của bạn.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div onclick="playGameDemo('Ai là triệu phú phiên bản EdTech')" class="bg-slate-800 p-5 rounded-2xl border border-slate-700 hover:border-accent cursor-pointer transition space-y-2 group">
+                            <div class="w-10 h-10 bg-accent/20 text-accent rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <h5 class="font-bold text-sm text-white">Ai Là Triệu Phú</h5>
+                            <p class="text-[11px] text-slate-400">15 câu hỏi trắc nghiệm tăng dần độ khó kèm nhạc nền hồi hộp.</p>
+                        </div>
+                        <div onclick="playGameDemo('Vòng quay may mắn tri thức')" class="bg-slate-800 p-5 rounded-2xl border border-slate-700 hover:border-accent cursor-pointer transition space-y-2 group">
+                            <div class="w-10 h-10 bg-primary/20 text-primary-light rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition">
+                                <i class="fa-solid fa-rotate"></i>
+                            </div>
+                            <h5 class="font-bold text-sm text-white">Vòng Quay May Mắn</h5>
+                            <p class="text-[11px] text-slate-400">Quay ô phần thưởng hoặc gọi tên học sinh trả lời câu hỏi.</p>
+                        </div>
+                        <div onclick="playGameDemo('Ô chữ kỳ diệu')" class="bg-slate-800 p-5 rounded-2xl border border-slate-700 hover:border-accent cursor-pointer transition space-y-2 group">
+                            <div class="w-10 h-10 bg-green-500/20 text-green-400 rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition">
+                                <i class="fa-solid fa-puzzle-piece"></i>
+                            </div>
+                            <h5 class="font-bold text-sm text-white">Ô Chữ Kỳ Diệu</h5>
+                            <p class="text-[11px] text-slate-400">Giải mã hàng ngang tìm từ khóa bí mật đầu giờ học.</p>
+                        </div>
+                        <div onclick="playGameDemo('Trắc nghiệm nhanh tốc độ')" class="bg-slate-800 p-5 rounded-2xl border border-slate-700 hover:border-accent cursor-pointer transition space-y-2 group">
+                            <div class="w-10 h-10 bg-yellow-500/20 text-yellow-400 rounded-xl flex items-center justify-center text-lg group-hover:scale-110 transition">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <h5 class="font-bold text-sm text-white">Trắc Nghiệm Tốc Độ</h5>
+                            <p class="text-[11px] text-slate-400">Thi đua bấm chuông giành quyền trả lời trực tiếp.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. CLASS MANAGEMENT TAB -->
+                <div id="tab-class" class="tab-content hidden">
+                    <div class="max-w-2xl mx-auto space-y-6 text-center">
+                        <div class="space-y-2">
+                            <span class="bg-primary/20 text-primary-light px-3 py-1 rounded-full text-xs font-semibold">QUẢN LÝ 4.0</span>
+                            <h4 class="text-2xl font-bold">Hệ Thống Quản Lý Lớp Học Thông Minh</h4>
+                            <p class="text-xs text-slate-400">Điểm danh tự động, thống kê điểm số và gửi báo cáo cho phụ huynh.</p>
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 grid grid-cols-2 gap-4 text-left">
+                            <div class="bg-slate-700/50 p-4 rounded-xl">
+                                <div class="text-slate-400 text-xs">Sĩ số lớp quản lý</div>
+                                <div class="text-2xl font-bold text-accent mt-1">42 Học sinh</div>
+                            </div>
+                            <div class="bg-slate-700/50 p-4 rounded-xl">
+                                <div class="text-slate-400 text-xs">Điểm trung bình hệ thống</div>
+                                <div class="text-2xl font-bold text-green-400 mt-1">8.4 / 10</div>
+                            </div>
+                        </div>
+                        <button onclick="showNotification('Tính năng quản lý lớp học đang hoạt động ổn định!')" class="bg-primary hover:bg-primary-dark text-white font-bold px-6 py-3 rounded-xl transition text-sm">
+                            <i class="fa-solid fa-users mr-2"></i> Mở Sổ Chủ Nhiệm Trực Tuyến
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="pricing" class="py-20 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-primary">Bảng Giá Linh Hoạt</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Chi Phí Hợp Lý - Giá Trị Vượt Trội</h3>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                <!-- Free Plan -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="text-slate-500 font-semibold text-sm uppercase tracking-wider mb-2">Gói Cơ Bản</div>
+                        <div class="text-3xl font-extrabold text-slate-900 mb-4">Miễn Phí</div>
+                        <p class="text-slate-600 text-sm mb-6">Dành cho giáo viên muốn trải nghiệm các công cụ cơ bản hàng ngày.</p>
+                        <ul class="space-y-3 text-sm text-slate-700 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-primary"></i> 5 Giáo án AI / tháng</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-primary"></i> 3 Đề kiểm tra chuẩn / tháng</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-primary"></i> Tối đa 2 trò chơi tương tác</li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('register')" class="w-full bg-white hover:bg-slate-100 text-slate-800 font-semibold py-3 rounded-xl border border-slate-300 transition">
+                        Đăng Ký Miễn Phí
+                    </button>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="bg-primary text-white p-8 rounded-3xl shadow-2xl relative flex flex-col justify-between transform lg:-translate-y-2 border-2 border-primary-light">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-accent text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-md">
+                        Được Chọn Nhiều Nhất
+                    </div>
+                    <div>
+                        <div class="text-blue-200 font-semibold text-sm uppercase tracking-wider mb-2">Giáo Viên Pro</div>
+                        <div class="text-4xl font-extrabold mb-4">199.000đ <span class="text-lg font-normal text-blue-200">/tháng</span></div>
+                        <p class="text-blue-100 text-sm mb-6">Dành cho giáo viên muốn tối ưu hoàn toàn hiệu suất giảng dạy.</p>
+                        <ul class="space-y-3 text-sm text-blue-50 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Không giới hạn soạn giáo án AI</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Không giới hạn tạo đề thi & ma trận</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Kho trò chơi dạy học đầy đủ</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Quản lý toàn diện lớp học</li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('register')" class="w-full bg-accent hover:bg-accent-hover text-white font-bold py-3.5 rounded-xl shadow-lg transition">
+                        Nâng Cấp Pro Ngay
+                    </button>
+                </div>
+
+                <!-- School Plan -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="text-slate-500 font-semibold text-sm uppercase tracking-wider mb-2">Nhà Trường / Tổ Chức</div>
+                        <div class="text-3xl font-extrabold text-slate-900 mb-4">Liên hệ</div>
+                        <p class="text-slate-600 text-sm mb-6">Giải pháp đồng bộ toàn trường THCS, THPT và Trung tâm giáo dục.</p>
+                        <ul class="space-y-3 text-sm text-slate-700 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-primary"></i> Tài khoản cho toàn bộ giáo viên</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-primary"></i> Tùy chỉnh kho ngữ liệu riêng của trường</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-primary"></i> Hỗ trợ kỹ thuật ưu tiên 24/7</li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('register')" class="w-full bg-white hover:bg-slate-100 text-slate-800 font-semibold py-3 rounded-xl border border-slate-300 transition">
+                        Nhận Tư Vấn
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-primary">Đánh Giá Từ Thầy Cô</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Giáo Viên Nói Gì Về Th-Edu AI?</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between space-y-6">
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Từ khi sử dụng Th-Edu AI để soạn giáo án và tạo ma trận đề kiểm tra, thời gian làm việc buổi tối của tôi giảm đi một nửa. Các trò chơi tương tác cũng khiến học sinh hào hứng hẳn."
+                    </p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 text-primary font-bold flex items-center justify-center">TL</div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-900">Cô Trần Thị Lan</div>
+                            <div class="text-xs text-slate-500">Giáo viên Toán, An Giang</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between space-y-6">
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Tính năng xáo trộn mã đề và tạo câu hỏi theo ma trận của Th-Edu AI cực kỳ chuẩn xác theo quy định. Rất hữu ích cho các thầy cô giáo."
+                    </p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-accent/20 text-accent font-bold flex items-center justify-center">NH</div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-900">Thầy Nguyễn Hoàng Nam</div>
+                            <div class="text-xs text-slate-500">Tổ trưởng chuyên môn Hóa học</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between space-y-6">
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Học sinh lớp tôi rất thích các minigame ôn tập kiến thức cuối giờ. Giao diện mượt mà và trực quan trên cả điện thoại."
+                    </p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 text-primary font-bold flex items-center justify-center">PH</div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-900">Cô Phạm Hoài Thu</div>
+                            <div class="text-xs text-slate-500">Giáo viên Tiếng Anh</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER WITH REQUESTED CONTACT INFO -->
+    <footer class="bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-md">
+                            <i class="fa-solid fa-graduation-cap text-lg"></i>
+                        </div>
+                        <span class="text-2xl font-extrabold text-white">Th-Edu<span class="text-accent">.AI</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
+                        Nền tảng Giáo dục & Công nghệ hàng đầu Việt Nam, cung cấp giải pháp AI tối ưu hóa soạn thảo giáo án, ma trận đề thi và trò chơi dạy học tương tác.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <h5 class="text-white font-bold text-sm uppercase tracking-wider">Sản Phẩm</h5>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#features" class="hover:text-white transition">Soạn giáo án AI</a></li>
+                        <li><a href="#features" class="hover:text-white transition">Tạo ma trận đề thi</a></li>
+                        <li><a href="#features" class="hover:text-white transition">Trò chơi dạy học</a></li>
+                        <li><a href="#features" class="hover:text-white transition">Quản lý lớp học</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h5 class="text-white font-bold text-sm uppercase tracking-wider">Tài Nguyên</h5>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Hướng dẫn sử dụng</a></li>
+                        <li><a href="#" class="hover:text-white transition">Kho giáo án mẫu</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog EdTech</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info as requested -->
+                <div class="space-y-4">
+                    <h5 class="text-white font-bold text-sm uppercase tracking-wider">Liên Hệ</h5>
+                    <ul class="space-y-2.5 text-sm">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-primary"></i> contact.theduai@gmail.com</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-primary"></i> 0812616641</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot text-primary mt-1"></i> Châu Đốc, An Giang</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 Th-Edu AI. Bảo lưu mọi quyền.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-slate-400 transition">Chính sách bảo mật</a>
+                    <a href="#" class="hover:text-slate-400 transition">Điều khoản dịch vụ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL POPUP FOR REGISTRATION / LOGIN -->
+    <div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden px-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl relative transform transition-all scale-95 opacity-0 duration-300" id="modal-container">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 text-xl w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-xl mx-auto mb-3">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <h3 id="modal-title" class="text-2xl font-bold text-slate-900">Trải Nghiệm Miễn Phí Th-Edu AI</h3>
+                <p id="modal-subtitle" class="text-slate-500 text-sm mt-1">Nhập thông tin để nhận tài khoản dùng thử ngay lập tức.</p>
+            </div>
+
+            <form id="auth-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div id="name-field">
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Họ và tên</label>
+                    <input type="text" id="fullname" placeholder="Nguyễn Văn A" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-primary text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Email hoặc Số điện thoại</label>
+                    <input type="text" id="contact" required placeholder="contact.theduai@gmail.com hoặc 0812616641" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-primary text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Bạn là ai?</label>
+                    <select id="role" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-primary text-sm bg-white">
+                        <option value="teacher">Giáo viên</option>
+                        <option value="student">Học sinh</option>
+                        <option value="school">Nhà Trường / Ban Giám Hiệu</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3.5 rounded-xl shadow-lg shadow-primary/20 transition text-sm">
+                    Xác Nhận & Bắt Đầu
+                </button>
+            </form>
+
+            <div id="success-message" class="hidden text-center py-6 space-y-4">
+                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h4 class="text-xl font-bold text-slate-900">Đăng Ký Thành Công!</h4>
+                <p class="text-sm text-slate-600">Hệ thống đã ghi nhận thông tin của bạn. Hãy trải nghiệm ngay các công cụ AI tuyệt vời của Th-Edu AI tại Châu Đốc, An Giang!</p>
+                <button onclick="closeModal()" class="bg-primary text-white font-semibold px-6 py-2.5 rounded-xl text-sm">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION BOX -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-6 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700">
+        <i class="fa-solid fa-circle-check text-green-400 text-lg"></i>
+        <span id="toast-text" class="text-sm font-medium">Thông báo hệ thống</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Interactive Demo Tabs Switcher
+        function switchTab(tabName) {
+            const tabs = ['lesson', 'exam', 'games', 'class'];
+            tabs.forEach(t => {
+                const content = document.getElementById(`tab-${t}`);
+                const btn = document.getElementById(`btn-${t}`);
+                if (t === tabName) {
+                    content.classList.remove('hidden');
+                    if(btn) {
+                        btn.className = "px-5 py-3 rounded-xl font-semibold text-sm transition bg-primary text-white shadow-md shadow-primary/20";
+                    }
+                } else {
+                    content.classList.add('hidden');
+                    if(btn) {
+                        btn.className = "px-5 py-3 rounded-xl font-semibold text-sm transition bg-slate-100 text-slate-700 hover:bg-slate-200";
+                    }
+                }
+            });
+        }
+
+        // 1. Generate Lesson Plan with 2s AI loading
+        function generateLesson() {
+            const titleInput = document.getElementById('lesson-title').value;
+            const subject = document.getElementById('lesson-subject').value;
+            const grade = document.getElementById('lesson-grade').value;
+
+            if(!titleInput.trim()) {
+                showNotification('Vui lòng nhập tên bài học!');
+                return;
+            }
+
+            document.getElementById('lesson-input-view').classList.add('hidden');
+            document.getElementById('lesson-loading').classList.remove('hidden');
+
+            setTimeout(() => {
+                document.getElementById('lesson-loading').classList.add('hidden');
+                document.getElementById('res-lesson-name').innerText = `Giáo án: ${titleInput} (${subject} - ${grade})`;
+                document.getElementById('lesson-result').classList.remove('hidden');
+                showNotification('Đã tạo giáo án AI thành công!');
+            }, 2000);
+        }
+
+        // 2. Generate Exam with 2s AI loading
+        function generateExam() {
+            document.getElementById('exam-input-view').classList.add('hidden');
+            document.getElementById('exam-loading').classList.remove('hidden');
+
+            setTimeout(() => {
+                document.getElementById('exam-loading').classList.add('hidden');
+                document.getElementById('exam-result').classList.remove('hidden');
+                showNotification('Đã tạo ma trận và đề kiểm tra thành công!');
+            }, 2000);
+        }
+
+        // 3. Play game demo
+        function playGameDemo(gameName) {
+            showNotification(`Đang khởi động phòng chơi: ${gameName}...`);
+        }
+
+        // Reset Form
+        function resetForm(type) {
+            if(type === 'lesson') {
+                document.getElementById('lesson-result').classList.add('hidden');
+                document.getElementById('lesson-input-view').classList.remove('hidden');
+            } else if(type === 'exam') {
+                document.getElementById('exam-result').classList.add('hidden');
+                document.getElementById('exam-input-view').classList.remove('hidden');
+            }
+        }
+
+        // Toast Notification Helper
+        function showNotification(message) {
+            const toast = document.getElementById('toast-notification');
+            const toastText = document.getElementById('toast-text');
+            toastText.innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Copy source code function
+        function copySourceCode() {
+            const htmlContent = document.documentElement.outerHTML;
+            const textarea = document.createElement('textarea');
+            textarea.value = htmlContent;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showNotification('Đã sao chép toàn bộ mã nguồn index.html vào clipboard!');
+            } catch (err) {
+                showNotification('Không thể sao chép tự động. Vui lòng thử lại.');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // Modal Functionality
+        const authModal = document.getElementById('auth-modal');
+        const modalContainer = document.getElementById('modal-container');
+        const authForm = document.getElementById('auth-form');
+        const successMessage = document.getElementById('success-message');
+        const modalTitle = document.getElementById('modal-title');
+        const modalSubtitle = document.getElementById('modal-subtitle');
+        const nameField = document.getElementById('name-field');
+
+        function openModal(mode) {
+            authModal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContainer.classList.remove('scale-95', 'opacity-0');
+                modalContainer.classList.add('scale-100', 'opacity-100');
+            }, 10);
+
+            authForm.reset();
+            authForm.classList.remove('hidden');
+            successMessage.classList.add('hidden');
+
+            if(mode === 'login') {
+                modalTitle.innerText = "Đăng Nhập Th-Edu AI";
+                modalSubtitle.innerText = "Truy cập không gian làm việc của bạn";
+                nameField.classList.add('hidden');
+            } else {
+                modalTitle.innerText = "Trải Nghiệm Miễn Phí Th-Edu AI";
+                modalSubtitle.innerText = "Nhập thông tin để nhận tài khoản dùng thử ngay lập tức.";
+                nameField.classList.remove('hidden');
+            }
+        }
+
+        function closeModal() {
+            modalContainer.classList.remove('scale-100', 'opacity-100');
+            modalContainer.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                authModal.classList.add('hidden');
+            }, 200);
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            authForm.classList.add('hidden');
+            successMessage.classList.remove('hidden');
+            showNotification('Đăng ký tài khoản thành công!');
+        }
+
+        window.onclick = function(event) {
+            if (event.target === authModal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
